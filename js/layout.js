@@ -112,7 +112,7 @@
       <div class="actions">
         <a class="act" href="stores.html" aria-label="Store locator">${icon('store')}<span class="lbl-txt">Our Store</span></a>
         <a class="act" href="wishlist.html" aria-label="Wishlist">${icon('heart')}<span class="lbl-txt">Wishlist</span><span class="badge" id="wishCount"></span></a>
-        <button class="act" data-open="cartDrawer" aria-label="Shopping bag">${icon('bag')}<span class="lbl-txt">Bag</span><span class="badge" id="cartCount"></span></button>
+        ${S.shop ? `<button class="act" data-open="cartDrawer" aria-label="Shopping bag">${icon('bag')}<span class="lbl-txt">Bag</span><span class="badge" id="cartCount"></span></button>` : ''}
       </div>
     </div>
     <nav class="nav" aria-label="Main"><div class="wrap"><ul>
@@ -180,12 +180,12 @@
         <img src="${p.images[0]}" alt="${esc(p.name)}" loading="lazy" width="600" height="600">
         ${p.images[1] ? `<img class="alt" src="${p.images[1]}" alt="" loading="lazy">` : ''}
         <button class="wish-btn" data-wish="${p.id}" aria-pressed="${wished}" aria-label="${wished ? 'Remove from' : 'Add to'} wishlist: ${esc(p.name)}">${icon('heart', 'icon-sm')}</button>
-        <div class="card-quick">${p.hidePrice ? `<a class="card-add" href="${askLink(p)}" target="_blank" rel="noopener">${icon('phone', 'icon-sm')}Ask Today's Price</a>` : `<button class="card-add" data-add="${p.id}">${icon('bag', 'icon-sm')}Add to Bag</button>`}</div>
+        <div class="card-quick">${!S.shop ? `<button class="card-add" data-wish="${p.id}">${icon('heart', 'icon-sm')}${wished ? 'In Wishlist' : 'Add to Wishlist'}</button>` : !S.priced(p) ? `<a class="card-add" href="${askLink(p)}" target="_blank" rel="noopener">${icon('phone', 'icon-sm')}Ask Today's Price</a>` : `<button class="card-add" data-add="${p.id}">${icon('bag', 'icon-sm')}Add to Bag</button>`}</div>
       </div>
       <div class="card-body">
         <h3 class="card-title"><a href="product.html?id=${p.id}">${esc(p.name)}</a></h3>
         <span class="card-meta">${esc(p.purity === '925' ? 'Sterling Silver' : p.purity + ' ' + p.metal)} · ${p.grossWeight ? 'Gr ' + p.grossWeight + ' g · Net ' : ''}${p.weight} g</span>
-        <div class="card-price">${p.hidePrice ? '<strong class="ask">Price on request</strong>' : `<strong>${S.inr(pr.total)}</strong><small>incl. GST</small>`}</div>
+        ${!S.shop ? '' : `<div class="card-price">${!S.priced(p) ? '<strong class="ask">Price on request</strong>' : `<strong>${S.inr(pr.total)}</strong><small>incl. GST</small>`}</div>`}
       </div></article>`;
   }
 
@@ -243,7 +243,7 @@
       const q = input.value.trim().toLowerCase();
       if (q.length < 2) { box.classList.remove('open'); return; }
       const res = S.db.products.filter(p => (p.name + ' ' + p.category + ' ' + p.collection + ' ' + p.metal).toLowerCase().includes(q)).slice(0, 6);
-      box.innerHTML = res.length ? res.map(p => `<a href="product.html?id=${p.id}"><img src="${p.images[0].replace('w=800', 'w=100')}" alt=""><span>${esc(p.name)}<br><small style="color:var(--muted)">${p.hidePrice ? 'Price on request' : S.inr(S.priceOf(p).total)}</small></span></a>`).join('')
+      box.innerHTML = res.length ? res.map(p => `<a href="product.html?id=${p.id}"><img src="${p.images[0].replace('w=800', 'w=100')}" alt=""><span>${esc(p.name)}<br><small style="color:var(--muted)">${S.priced(p) ? S.inr(S.priceOf(p).total) : esc(p.category)}</small></span></a>`).join('')
         : `<a href="shop.html?q=${encodeURIComponent(q)}">No exact match — see all results for "${esc(q)}"</a>`;
       box.classList.add('open');
     });
@@ -283,7 +283,11 @@
       else if (t.hasAttribute('data-close')) closeDrawers();
       else if (t.dataset.wish) {
         e.preventDefault(); const added = S.wish.toggle(t.dataset.wish);
-        $$(`[data-wish="${t.dataset.wish}"]`).forEach(b => b.setAttribute('aria-pressed', added));
+        $$(`[data-wish="${t.dataset.wish}"]`).forEach(b => {
+          b.setAttribute('aria-pressed', added);
+          if (b.classList.contains('card-add')) b.innerHTML = icon('heart', 'icon-sm') + (added ? 'In Wishlist' : 'Add to Wishlist');
+          const lbl = b.querySelector('.wish-lbl'); if (lbl) lbl.textContent = added ? 'Saved to Wishlist' : 'Add to Wishlist';
+        });
         toast(added ? 'Added to wishlist' : 'Removed from wishlist');
       }
       else if (t.dataset.add) { e.preventDefault(); S.cart.add(t.dataset.add); toast('Added to your bag'); openDrawer('cartDrawer'); }

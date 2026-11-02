@@ -22,7 +22,7 @@
       <aside class="filters" id="filters" aria-label="Filters">
         <div class="drawer-head" style="display:flex"><h3 style="margin:0">Filters</h3><button class="icon-btn" id="closeFilters" aria-label="Close filters">✕</button></div>
         <div id="filterGroups"></div>
-        <div class="filter-group"><h4>Price (₹)</h4><div class="range-row"><label class="sr-only" for="minP">Minimum price</label><input id="minP" type="number" inputmode="numeric" placeholder="Min" min="0"><span>–</span><label class="sr-only" for="maxP">Maximum price</label><input id="maxP" type="number" inputmode="numeric" placeholder="Max" min="0"></div></div>
+        <div class="filter-group" id="priceFilter"><h4>Price (₹)</h4><div class="range-row"><label class="sr-only" for="minP">Minimum price</label><input id="minP" type="number" inputmode="numeric" placeholder="Min" min="0"><span>–</span><label class="sr-only" for="maxP">Maximum price</label><input id="maxP" type="number" inputmode="numeric" placeholder="Max" min="0"></div></div>
         <button class="btn btn-outline btn-block" id="clearAll" style="margin-top:18px">Clear All</button>
       </aside>
       <section aria-labelledby="shopTitle">
@@ -46,6 +46,7 @@
     const { $, $$, esc, card, icon } = UI; const db = SCJ.db;
     const params = new URLSearchParams(location.search);
     const FACETS = { category: 'Category', metal: 'Metal', purity: 'Purity', collection: 'Collection', gender: 'Gender' };
+    if (!SCJ.shop) { $('#priceFilter').hidden = true; ['low', 'high'].forEach(v => $(`#sort option[value=${v}]`).remove()); }
     const state = { q: params.get('q') || '', tag: params.get('tag') || '', min: params.get('min') || '', max: params.get('max') || '', sort: 'featured' };
     Object.keys(FACETS).forEach(k => state[k] = params.getAll(k).flatMap(v => v.split(',')).filter(Boolean));
 

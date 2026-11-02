@@ -25,6 +25,7 @@
   <script src="js/layout.js"></script>
   <script>
   SCJ.ready.then(function () {
+    if (!SCJ.shop) { location.replace('wishlist.html'); return; }
     const { $, $$, esc, icon, validate, bindBlurValidation } = UI;
     const items = SCJ.cart.detailed();
     if (!items.length) {

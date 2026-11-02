@@ -31,7 +31,7 @@
       const list = SCJ.wish.items().map(SCJ.product).filter(Boolean);
       $('#grid').innerHTML = list.length ? list.map(card).join('') : `<div class="empty" style="grid-column:1/-1">${icon('heart')}<h3>Your wishlist is empty</h3><p style="color:var(--muted)">Tap the heart on any design to save it here.</p><a class="btn btn-primary" href="shop.html">Explore Designs</a></div>`;
       $('#shareWish').hidden = !list.length;
-      $('#shareWish').href = 'https://wa.me/' + SCJ.db.settings.whatsapp + '?text=' + encodeURIComponent('My Sri Chandana wishlist:\n' + list.map(p => `• ${p.name} (${p.id}) — ${p.hidePrice ? 'price on request' : SCJ.inr(SCJ.priceOf(p).total)}`).join('\n'));
+      $('#shareWish').href = 'https://wa.me/' + SCJ.db.settings.whatsapp + '?text=' + encodeURIComponent('My Sri Chandana wishlist:\n' + list.map(p => `• ${p.name} (${p.id}) — ${SCJ.priced(p) ? SCJ.inr(SCJ.priceOf(p).total) : p.weight + ' g'}`).join('\n'));
     }
     document.addEventListener('scj:change', render); render();
   });

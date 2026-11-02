@@ -47,28 +47,28 @@
         <span class="eyebrow">${esc(p.collection)} Collection</span>
         <h1>${esc(p.name)}</h1>
         <span class="sku">SKU ${p.id}</span>
-        ${p.hidePrice ? `<div class="pdp-price"><strong class="ask">Price on request</strong><small>Priced at the day's gold rate</small></div>
+        ${!SCJ.shop ? '' : !SCJ.priced(p) ? `<div class="pdp-price"><strong class="ask">Price on request</strong><small>Priced at the day's gold rate</small></div>
         <p style="font-size:13px;color:var(--muted);margin:0">Message us on WhatsApp or call ${esc(SCJ.db.settings.phone)} for today's price.</p>` : `<div class="pdp-price"><strong>${SCJ.inr(pr.total)}</strong><small>MRP incl. of all taxes</small></div>
         <p style="font-size:13px;color:var(--muted);margin:0">Price at today's ${p.purity === '925' ? 'silver' : p.purity} rate of ${SCJ.inr(pr.rate)}/g. Final price may vary slightly with actual weight.</p>`}
         <div class="spec-pills"><span>Metal <b>${metalLabel}</b></span>${p.grossWeight ? `<span>Gross wt <b>${p.grossWeight} g</b></span><span>Net wt <b>${p.weight} g</b></span>` : `<span>Weight <b>${p.weight} g</b></span>`}${p.stoneValue ? `<span>Stones <b>${p.metal === 'Diamond' ? 'Certified diamonds' : 'Precious stones'}</b></span>` : ''}<span>For <b>${esc(p.gender)}</b></span></div>
         ${sizes.length ? `<div class="field"><span class="label" id="sizeLbl">${isRing ? 'Ring size' : 'Bangle size'}</span><div class="sizes" role="group" aria-labelledby="sizeLbl">${sizes.map(s => `<button type="button" data-size="${s}" aria-pressed="false">${s}</button>`).join('')}</div><span class="hint">Not sure? <a href="#" data-book="${esc(p.name)}" style="text-decoration:underline">Get help with sizing</a></span></div>` : ''}
         <div class="buy-row">
-          ${p.hidePrice ? `<a class="btn btn-primary" style="flex:1" href="${UI.askLink(p)}" target="_blank" rel="noopener">${icon('phone', 'icon-sm')} Ask Price on WhatsApp</a>` : `<button class="btn btn-primary" id="addBag">${icon('bag', 'icon-sm')} Add to Bag</button>
+          ${!SCJ.shop ? `<button class="btn btn-primary" style="flex:1" data-wish="${p.id}" aria-pressed="${SCJ.wish.has(p.id)}">${icon('heart', 'icon-sm')} <span class="wish-lbl">${SCJ.wish.has(p.id) ? 'Saved to Wishlist' : 'Add to Wishlist'}</span></button>` : !SCJ.priced(p) ? `<a class="btn btn-primary" style="flex:1" href="${UI.askLink(p)}" target="_blank" rel="noopener">${icon('phone', 'icon-sm')} Ask Price on WhatsApp</a>` : `<button class="btn btn-primary" id="addBag">${icon('bag', 'icon-sm')} Add to Bag</button>
           <button class="btn btn-outline" id="buyNow">Buy Now</button>`}
-          <button class="wish-btn" data-wish="${p.id}" aria-pressed="${SCJ.wish.has(p.id)}" aria-label="Wishlist">${icon('heart', 'icon-sm')}</button>
+          ${SCJ.shop ? `<button class="wish-btn" data-wish="${p.id}" aria-pressed="${SCJ.wish.has(p.id)}" aria-label="Wishlist">${icon('heart', 'icon-sm')}</button>` : ''}
         </div>
         <div class="btn-row" style="margin-bottom:20px">
           <button class="btn btn-outline" style="flex:1" data-book="${esc(p.name)}">${icon('video', 'icon-sm')} Video Call</button>
           <a class="btn btn-outline" style="flex:1;border-color:#1FA855;color:#167A3E" target="_blank" rel="noopener" href="https://wa.me/${SCJ.db.settings.whatsapp}?text=${encodeURIComponent('Hi, I am interested in ' + p.name + ' (' + p.id + ') — ' + location.href)}">WhatsApp Enquiry</a>
         </div>
-        <label class="label" for="pin">Check delivery</label>
+        <div ${SCJ.shop ? '' : 'hidden'}><label class="label" for="pin">Check delivery</label>
         <div class="pin-check" style="margin-top:6px"><input id="pin" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit pincode" autocomplete="postal-code"><button class="btn btn-outline" id="pinBtn" style="min-height:46px">Check</button></div>
-        <div class="pin-msg" id="pinMsg" aria-live="polite"></div>
+        <div class="pin-msg" id="pinMsg" aria-live="polite"></div></div>
         <div class="perks">
           <div>${icon('shield', 'icon-sm')}BIS Hallmark · HUID</div><div>${icon('refresh', 'icon-sm')}Old gold exchange</div>
           <div>${icon('truck', 'icon-sm')}Reserve online</div><div>${icon('store', 'icon-sm')}Free pickup at store</div>
         </div>
-        <details class="acc" open ${p.hidePrice ? 'hidden' : ''}><summary>Price Breakup</summary><div class="acc-body"><table class="breakup">
+        <details class="acc" open ${SCJ.priced(p) ? '' : 'hidden'}><summary>Price Breakup</summary><div class="acc-body"><table class="breakup">
           <tr><td>${p.purity === '925' ? 'Silver' : 'Gold'} value (${p.weight}g × ${SCJ.inr(pr.rate)})</td><td>${SCJ.inr(pr.metal)}</td></tr>
           <tr><td>Making charges (${p.making}%)</td><td>${SCJ.inr(pr.making)}</td></tr>
           ${pr.stone ? `<tr><td>${p.metal === 'Diamond' ? 'Diamond' : 'Stone'} value</td><td>${SCJ.inr(pr.stone)}</td></tr>` : ''}

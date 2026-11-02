@@ -137,7 +137,7 @@
     <section class="section">
       <div class="wrap">
         <div class="section-head reveal"><h2>Curated For You</h2><p class="sub">Shop by budget or by who you're shopping for</p></div>
-        <div class="chips-row stagger">
+        <div class="chips-row stagger" id="budgetChips">
           <a class="price-chip" href="shop.html?max=25000"><small>Under</small><strong>₹25,000</strong></a>
           <a class="price-chip" href="shop.html?min=25000&max=75000"><small>₹25K to</small><strong>₹75,000</strong></a>
           <a class="price-chip" href="shop.html?min=75000&max=200000"><small>₹75K to</small><strong>₹2 Lakh</strong></a>
@@ -306,6 +306,7 @@
       + `<a class="cat all" href="shop.html"><div class="cat-img"><div><strong>${db.products.length}+</strong><small>designs</small></div></div><span class="cat-name">View All${ARROW}</span></a>`;
 
     // ---------- Rates ----------
+    if (!SCJ.shop) { $('#budgetChips').remove(); document.querySelector('#gender').closest('.section').querySelector('.sub').textContent = "Find designs for everyone you love"; }
     const r = SCJ.rates;
     $('#rateCards').innerHTML = [['24 Karat', r.k24, '99.9% pure gold'], ['22 Karat', r.k22, '91.6% · jewellery gold'], ['18 Karat', r.k18, '75% · diamond settings'], ['Silver', r.silver, '999 fine silver']]
       .map(([a, v, s]) => `<div class="rate-card"><span>${a}</span><strong data-rate="${v}">${SCJ.inr(v)}</strong><small>per gram · ${s}</small></div>`).join('');

@@ -22,6 +22,7 @@
       instagram: 'https://www.instagram.com/sri_chandana_jewellers5/', instagramHandle: 'sri_chandana_jewellers5',
       facebook: '', youtube: '',
       autoRate: { on: true, premium: 6, silverPremium: 8, ratio22: 91.6, ratio18: 75 },
+      showPrices: false, // catalogue mode: designs, weights and wishlist only — no prices or shopping bag
       schemePlans: [
         { id: 'sp1', name: 'Monthly Gold Savings Plan', tag: '11 Monthly Instalments', desc: 'Save a fixed amount every month for 11 months and buy jewellery at maturity with a bonus.', perks: ['Start from ₹500 a month, in multiples of ₹500', 'Bonus at maturity — up to one instalment', 'Making-charge (VA) discount on selected jewellery'], min: 500, months: 11, bonusMonths: 1, popular: true },
         { id: 'sp2', name: 'Gold Weight Plan', tag: 'Gram Rate Lock', desc: 'Each instalment is converted into grams of gold at the rate of that day, so rising prices never eat into your savings.', perks: ['Every payment booked as gold grams', 'Protection from gold price rises', 'Collect jewellery equal to your total grams'], min: 1000, months: 11, bonusMonths: 0, popular: false }
@@ -160,6 +161,8 @@
     IMG, inr, priceOf, rateFor,
     get db() { return db; },
     get rates() { return current(); },
+    get shop() { return !!db.settings.showPrices; },
+    priced: p => !!db.settings.showPrices && !p.hidePrice,
     live: null,
     ready: Promise.resolve(),
     save, saveLocal,

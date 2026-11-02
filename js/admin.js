@@ -476,6 +476,7 @@
     $('#content').innerHTML = `<form class="box" id="sForm" novalidate><h3>Store Information</h3><div class="form-2">
       <div class="field full"><label for="s-address">Address</label><textarea id="s-address" name="address">${esc(s.address)}</textarea></div>
       ${F.map(([k, l]) => `<div class="field"><label for="s-${k}">${l}</label><input id="s-${k}" name="${k}" value="${esc(s[k])}"></div>`).join('')}</div>
+      <label class="toggle" style="margin:4px 0 16px"><input type="checkbox" name="showPrices" ${s.showPrices ? 'checked' : ''}> Show prices and shopping bag on the website <span class="muted" style="font-size:12.5px">(off = customers see designs, weights and wishlist only)</span></label>
       <button class="btn btn-primary btn-sm">Save Store Info</button></form>
       ${cloudOn() ? `<div class="box" style="margin-top:18px"><h3>Change Password</h3><p class="muted">For your security, password changes are done by email. We'll send a reset link to ${esc((SCJ_FIREBASE.adminEmails || [])[0] || 'the owner email')}.</p><button class="btn btn-primary btn-sm" id="resetMail">Send Password Reset Email</button></div>` : ''}
       <form class="box" id="pwForm" style="margin-top:18px" novalidate ${cloudOn() ? 'hidden' : ''}><h3>Change Admin Password</h3><div class="form-2">
@@ -484,7 +485,7 @@
         <button class="btn btn-primary btn-sm">Update Password</button></form>
       <div class="box" style="margin-top:18px"><h3>Data Backup</h3><p class="muted">${cloudOn() ? 'Your store data is saved online. You can still download a copy for safekeeping.' : 'All store data lives in this browser. Download a backup regularly, and restore it on another computer.'}</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-outline btn-sm" id="exp">${ic('dl')} Download Backup</button><label class="btn btn-outline btn-sm" style="cursor:pointer">Restore Backup<input type="file" id="imp" accept="application/json" hidden></label><button class="btn btn-outline btn-sm" id="rst" style="border-color:var(--err);color:var(--err)">Reset to Demo Data</button></div></div>`;
-    $('#sForm').addEventListener('submit', e => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target)); Object.assign(db().settings, d); SCJ.save(); toast('Store information saved'); });
+    $('#sForm').addEventListener('submit', e => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target)); d.showPrices = e.target.showPrices.checked; Object.assign(db().settings, d); SCJ.save(); toast('Store information saved'); });
     $('#pwForm').addEventListener('submit', e => {
       e.preventDefault(); const a = $('#np').value, b = $('#np2').value;
       $('#np').closest('.field').classList.toggle('invalid', a.length < 8); $('#np2').closest('.field').classList.toggle('invalid', a !== b);
