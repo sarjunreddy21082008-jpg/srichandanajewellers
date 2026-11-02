@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secure Checkout | Sri Chandana Jewellers</title>
+  <meta name="theme-color" content="#861543">
+  <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="checkout">
+  <div id="site-header"></div>
+  <main id="main" class="wrap">
+    <nav class="crumbs dark" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Checkout</span></nav>
+    <h1 style="font-size:2.4rem">Secure Checkout</h1>
+    <div id="view"></div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/store.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/live-rate.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+  SCJ.ready.then(function () {
+    const { $, $$, esc, icon, validate, bindBlurValidation } = UI;
+    const items = SCJ.cart.detailed();
+    if (!items.length) {
+      $('#view').innerHTML = `<div class="empty" style="margin:20px 0 80px">${icon('bag')}<h3>Your bag is empty</h3><p style="color:var(--muted)">Add a design you love to continue.</p><a class="btn btn-primary" href="shop.html">Shop Jewellery</a></div>`;
+      return;
+    }
+    const sub = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const gst = items.reduce((s, i) => s + SCJ.priceOf(i.p).gst * i.qty, 0);
+
+    $('#view').innerHTML = `<form class="checkout" id="co" novalidate>
+      <div>
+        <div class="panel"><h3><span class="n">1</span>Contact Details</h3><div class="form-2">
+          <div class="field"><label for="name">Full name <span class="req">*</span></label><input id="name" name="name" autocomplete="name" required><span class="err">Please enter your full name.</span></div>
+          <div class="field"><label for="phone">Mobile number <span class="req">*</span></label><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" maxlength="10" required><span class="err">Enter a valid 10-digit mobile number.</span></div>
+          <div class="field full"><label for="email">Email (for invoice)</label><input id="email" name="email" type="email" autocomplete="email"><span class="err">Enter a valid email address.</span></div></div></div>
+        <div class="panel"><h3><span class="n">2</span>Delivery</h3>
+          <label class="pay-opt"><input type="radio" name="delivery" value="Store Pickup" checked><div><strong>Pick up at Parvathipuram showroom</strong><small>Free · Ready in 24 hours · Try before you take it home</small></div></label>
+          <label class="pay-opt"><input type="radio" name="delivery" value="Home Delivery"><div><strong>Home delivery</strong><small>We will call you to confirm delivery and any charges</small></div></label>
+          <div class="form-2" id="addr" hidden style="margin-top:14px">
+            <div class="field full"><label for="address">Address <span class="req">*</span></label><textarea id="address" name="address" autocomplete="street-address"></textarea><span class="err">Please enter your delivery address.</span></div>
+            <div class="field"><label for="city">City / Town <span class="req">*</span></label><input id="city" name="city" autocomplete="address-level2"><span class="err">Please enter your city.</span></div>
+            <div class="field"><label for="pincode">Pincode <span class="req">*</span></label><input id="pincode" name="pincode" inputmode="numeric" pattern="[1-9][0-9]{5}" maxlength="6" autocomplete="postal-code"><span class="err">Enter a valid 6-digit pincode.</span></div></div></div>
+        <div class="panel"><h3><span class="n">3</span>Payment</h3>
+          <label class="pay-opt"><input type="radio" name="payment" value="UPI" checked><div><strong>UPI (GPay, PhonePe, Paytm)</strong><small>Instant and secure</small></div></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="Card / Net Banking"><div><strong>Credit / Debit Card, Net Banking</strong><small>Our team will share a secure payment link</small></div></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="Pay at Store"><div><strong>Pay at store</strong><small>Reserve now, pay when you collect</small></div></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="COD"><div><strong>Cash on delivery</strong><small>Up to ₹2,00,000 as per RBI guidelines</small></div></label>
+          <p style="font-size:12.5px;color:var(--muted);margin:10px 0 0">No payment is taken on the website. Choose how you would like to pay and we will arrange it when we confirm.</p></div>
+      </div>
+      <aside class="summary"><div class="panel"><h3>Order Summary</h3>
+        ${items.map(i => `<div class="mini-line"><img src="${i.p.images[0]}" alt=""><div><strong style="font-weight:600">${esc(i.p.name)}</strong><br><small style="color:var(--muted)">${i.p.purity} · ${i.p.weight}g · Qty ${i.qty}${i.size ? ' · Size ' + esc(i.size) : ''}</small></div><span class="tnum">${SCJ.inr(i.price * i.qty)}</span></div>`).join('')}
+        <div style="margin-top:14px"><div class="sum-row"><span>Item total</span><span class="tnum">${SCJ.inr(sub - gst)}</span></div><div class="sum-row"><span>GST (3%)</span><span class="tnum">${SCJ.inr(gst)}</span></div><div class="sum-row"><span>Shipping & insurance</span><span style="color:var(--ok)">Free</span></div><div class="sum-row total"><span>Total payable</span><span class="tnum">${SCJ.inr(sub)}</span></div></div>
+        <button class="btn btn-primary btn-block" type="submit" id="placeBtn" style="margin-top:20px">Send Order on WhatsApp</button>
+        <p style="font-size:12.5px;color:var(--muted);text-align:center;margin:10px 0 0">Your order goes to our WhatsApp. We confirm the final price at today's rate and arrange payment.</p>
+        <p style="font-size:12px;color:var(--muted);text-align:center;margin:12px 0 0">${icon('shield', 'icon-sm')} BIS hallmarked · Transparent pricing · Since 2007</p></div></aside>
+    </form>`;
+
+    const f = $('#co'); bindBlurValidation(f);
+    const toggleAddr = () => { const home = f.delivery.value === 'Home Delivery'; $('#addr').hidden = !home; ['address', 'city', 'pincode'].forEach(n => f[n].required = home); };
+    $$('[name=delivery]').forEach(r => r.addEventListener('change', toggleAddr));
+
+    f.addEventListener('submit', e => {
+      e.preventDefault(); if (!validate(f)) return;
+      const d = Object.fromEntries(new FormData(f));
+      const lines = items.map((i, n) => `${n + 1}. ${i.p.name} (${i.p.id})${i.size ? ', size ' + i.size : ''} × ${i.qty} — ${SCJ.inr(i.price * i.qty)}`);
+      const where = d.delivery === 'Home Delivery' ? `Home delivery: ${d.address}, ${d.city} ${d.pincode}` : 'Store pickup';
+      UI.whatsapp(`Namaste, I would like to order:\n${lines.join('\n')}\nEstimated total: ${SCJ.inr(sub)} (at today's rate, incl. GST)\n\nName: ${d.name}\nMobile: ${d.phone}${d.email ? '\nEmail: ' + d.email : ''}\n${where}\nPayment: ${d.payment}`);
+      SCJ.cart.clear();
+      $('h1').textContent = 'Thank You!';
+      $('#view').innerHTML = `<div class="success"><div class="seal">${icon('check')}</div><h2>Almost done — press Send on WhatsApp</h2>
+        <p style="color:var(--muted)">Your order for <strong>${SCJ.inr(sub)}</strong> is ready in WhatsApp. Press <strong>Send</strong> there and we will confirm the final price and ${d.delivery === 'Store Pickup' ? 'pickup time' : 'delivery'} on ${esc(d.phone)}.</p>
+        <div class="btn-row" style="justify-content:center;margin-top:26px"><a class="btn btn-outline" href="shop.html">Continue Shopping</a></div></div>`;
+      window.scrollTo({ top: 0 });
+    });
+  });
+  </script>
+</body>
+</html>

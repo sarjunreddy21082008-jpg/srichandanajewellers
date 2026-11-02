@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Wishlist | Sri Chandana Jewellers</title>
+  <meta name="theme-color" content="#861543">
+  <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="wishlist">
+  <div id="site-header"></div>
+  <main id="main" class="wrap" style="padding-bottom:80px">
+    <nav class="crumbs dark" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Wishlist</span></nav>
+    <div class="row-head"><div><span class="eyebrow">Saved for later</span><h1 style="font-size:2.4rem;margin:0">My Wishlist</h1></div>
+      <a class="btn btn-outline" id="shareWish" target="_blank" rel="noopener" style="border-color:#1FA855;color:#167A3E">Share on WhatsApp</a></div>
+    <div class="grid" id="grid"></div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/store.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/live-rate.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+  SCJ.ready.then(function () {
+    const { $, icon, card } = UI;
+    function render() {
+      const list = SCJ.wish.items().map(SCJ.product).filter(Boolean);
+      $('#grid').innerHTML = list.length ? list.map(card).join('') : `<div class="empty" style="grid-column:1/-1">${icon('heart')}<h3>Your wishlist is empty</h3><p style="color:var(--muted)">Tap the heart on any design to save it here.</p><a class="btn btn-primary" href="shop.html">Explore Designs</a></div>`;
+      $('#shareWish').hidden = !list.length;
+      $('#shareWish').href = 'https://wa.me/' + SCJ.db.settings.whatsapp + '?text=' + encodeURIComponent('My Sri Chandana wishlist:\n' + list.map(p => `• ${p.name} (${p.id}) — ${p.hidePrice ? 'price on request' : SCJ.inr(SCJ.priceOf(p).total)}`).join('\n'));
+    }
+    document.addEventListener('scj:change', render); render();
+  });
+  </script>
+</body>
+</html>

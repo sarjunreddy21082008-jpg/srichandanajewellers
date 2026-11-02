@@ -1,0 +1,27 @@
+rules_version = '2';
+// Sri Chandana Jewellers — who can read and write the online database.
+// Replace the email below if the owner signs in with a different one (keep it the same as adminEmails in js/firebase-config.js).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner() {
+      return request.auth != null && request.auth.token.email in ['sankamadhu1975@gmail.com'];
+    }
+    // a visitor-created record: at most 25 fields, and its id matches the document name
+    function validNew(id) {
+      let d = request.resource.data;
+      return d.id == id && d.size() <= 25;
+    }
+
+    // website content: everyone can read, only the owner can change
+    match /site/{doc} { allow read: if true; allow write: if isOwner(); }
+    match /products/{id} { allow read: if true; allow write: if isOwner(); }
+
+    // customer submissions: anyone can create, only the owner can see or change them
+    match /orders/{id} { allow create: if validNew(id); allow read, update, delete: if isOwner(); }
+    match /appointments/{id} { allow create: if validNew(id); allow read, update, delete: if isOwner(); }
+    match /enquiries/{id} { allow create: if validNew(id); allow read, update, delete: if isOwner(); }
+    match /schemes/{id} { allow create: if validNew(id); allow read, update, delete: if isOwner(); }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

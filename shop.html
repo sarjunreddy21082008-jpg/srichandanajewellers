@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop Jewellery | Sri Chandana Jewellers</title>
+  <meta name="description" content="Shop BIS hallmarked gold, diamond and silver jewellery online from Sri Chandana Jewellers, Parvathipuram.">
+  <meta name="theme-color" content="#861543">
+  <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="shop">
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero" style="--bg:url('https://images.unsplash.com/photo-1654781456542-fdd1683c79c3?auto=format&fit=crop&w=1600&q=60')">
+      <div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span id="crumbNow">All Jewellery</span></nav>
+        <h1 id="shopTitle">All Jewellery</h1><p id="shopSub" style="margin:0"></p></div>
+    </section>
+    <div class="wrap shop">
+      <aside class="filters" id="filters" aria-label="Filters">
+        <div class="drawer-head" style="display:flex"><h3 style="margin:0">Filters</h3><button class="icon-btn" id="closeFilters" aria-label="Close filters">✕</button></div>
+        <div id="filterGroups"></div>
+        <div class="filter-group"><h4>Price (₹)</h4><div class="range-row"><label class="sr-only" for="minP">Minimum price</label><input id="minP" type="number" inputmode="numeric" placeholder="Min" min="0"><span>–</span><label class="sr-only" for="maxP">Maximum price</label><input id="maxP" type="number" inputmode="numeric" placeholder="Max" min="0"></div></div>
+        <button class="btn btn-outline btn-block" id="clearAll" style="margin-top:18px">Clear All</button>
+      </aside>
+      <section aria-labelledby="shopTitle">
+        <div class="toolbar">
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn btn-outline filter-toggle" id="openFilters" style="min-height:44px;padding:0 16px">Filters</button><span id="count" class="tnum" style="color:var(--muted);font-size:14px" aria-live="polite"></span></div>
+          <div><label class="sr-only" for="sort">Sort by</label><select id="sort"><option value="featured">Sort: Featured</option><option value="new">Newest First</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="weight">Weight: Light to Heavy</option></select></div>
+        </div>
+        <div class="active-chips" id="chips" style="margin-bottom:18px"></div>
+        <div class="grid" id="grid" style="grid-template-columns:repeat(3,1fr)"></div>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/store.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/live-rate.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+  SCJ.ready.then(function () {
+    const { $, $$, esc, card, icon } = UI; const db = SCJ.db;
+    const params = new URLSearchParams(location.search);
+    const FACETS = { category: 'Category', metal: 'Metal', purity: 'Purity', collection: 'Collection', gender: 'Gender' };
+    const state = { q: params.get('q') || '', tag: params.get('tag') || '', min: params.get('min') || '', max: params.get('max') || '', sort: 'featured' };
+    Object.keys(FACETS).forEach(k => state[k] = params.getAll(k).flatMap(v => v.split(',')).filter(Boolean));
+
+    function values(k) { const m = {}; db.products.forEach(p => m[p[k]] = (m[p[k]] || 0) + 1); return Object.entries(m).sort((a, b) => b[1] - a[1]); }
+    $('#filterGroups').innerHTML = Object.entries(FACETS).map(([k, label]) => `<fieldset class="filter-group" style="border:0;border-bottom:1px solid var(--line);margin:0;padding:18px 0"><legend class="sr-only">${label}</legend><h4 aria-hidden="true">${label}</h4>
+      ${values(k).map(([v, n]) => `<label class="check"><input type="checkbox" data-f="${k}" value="${esc(v)}" ${state[k].includes(v) ? 'checked' : ''}><span>${esc(v === '925' ? 'Sterling 925' : v)}</span><span class="count">${n}</span></label>`).join('')}</fieldset>`).join('');
+    $('#minP').value = state.min; $('#maxP').value = state.max;
+
+    function apply() {
+      const q = state.q.toLowerCase();
+      let list = db.products.filter(p => {
+        for (const k of Object.keys(FACETS)) if (state[k].length && !state[k].includes(p[k])) return false;
+        if (state.tag && !p.tags.includes(state.tag)) return false;
+        if (q && !(p.name + ' ' + p.category + ' ' + p.collection + ' ' + p.metal + ' ' + p.tags.join(' ')).toLowerCase().includes(q)) return false;
+        const pr = SCJ.priceOf(p).total;
+        if (state.min && pr < +state.min) return false;
+        if (state.max && pr > +state.max) return false;
+        return true;
+      });
+      const by = { new: (a, b) => b.created - a.created, low: (a, b) => SCJ.priceOf(a).total - SCJ.priceOf(b).total, high: (a, b) => SCJ.priceOf(b).total - SCJ.priceOf(a).total, weight: (a, b) => a.weight - b.weight, featured: (a, b) => (b.featured - a.featured) || (b.tags.includes('bestseller') - a.tags.includes('bestseller')) };
+      list.sort(by[state.sort]);
+      $('#grid').innerHTML = list.length ? list.map(card).join('') : `<div class="empty" style="grid-column:1/-1">${icon('search')}<h3>No designs match these filters</h3><p style="color:var(--muted)">Try removing a filter, or ask us — we can custom-make it.</p><button class="btn btn-primary" id="emptyClear">Clear Filters</button></div>`;
+      $('#count').textContent = `${list.length} design${list.length === 1 ? '' : 's'}`;
+
+      // title + chips
+      const lead = state.collection[0] ? state.collection[0] + ' Collection' : state.category[0] || (state.metal[0] ? state.metal[0] + ' Jewellery' : state.q ? `Results for “${state.q}”` : state.tag === 'gift' ? 'Gifting' : state.gender[0] ? 'For ' + (state.gender[0] === 'Men' ? 'Him' : state.gender[0] === 'Women' ? 'Her' : state.gender[0]) : 'All Jewellery');
+      $('#shopTitle').textContent = lead; $('#crumbNow').textContent = lead; document.title = lead + ' | Sri Chandana Jewellers';
+      $('#shopSub').textContent = 'BIS hallmarked · Live pricing at today\'s gold rate · Reserve online, collect in store';
+      const chips = [];
+      Object.keys(FACETS).forEach(k => state[k].forEach(v => chips.push([k, v, v])));
+      if (state.q) chips.push(['q', '', 'Search: ' + state.q]);
+      if (state.tag) chips.push(['tag', '', state.tag === 'gift' ? 'Gifts' : state.tag]);
+      if (state.min || state.max) chips.push(['price', '', `₹${state.min || 0} – ${state.max ? '₹' + state.max : 'any'}`]);
+      $('#chips').innerHTML = chips.map(([k, v, l]) => `<span class="chip">${esc(l)}<button data-chip="${k}" data-v="${esc(v)}" aria-label="Remove filter ${esc(l)}">✕</button></span>`).join('');
+
+      // keep URL shareable
+      const u = new URLSearchParams();
+      Object.keys(FACETS).forEach(k => state[k].length && u.set(k, state[k].join(',')));
+      ['q', 'tag', 'min', 'max'].forEach(k => state[k] && u.set(k, state[k]));
+      history.replaceState(null, '', 'shop.html' + (u.toString() ? '?' + u : ''));
+    }
+
+    document.addEventListener('change', e => {
+      const f = e.target.dataset.f;
+      if (f) { state[f] = $$(`[data-f="${f}"]:checked`).map(i => i.value); apply(); }
+      if (e.target.id === 'sort') { state.sort = e.target.value; apply(); }
+      if (e.target.id === 'minP' || e.target.id === 'maxP') { state.min = $('#minP').value; state.max = $('#maxP').value; apply(); }
+    });
+    const clear = () => { Object.keys(FACETS).forEach(k => state[k] = []); state.q = state.tag = state.min = state.max = ''; $$('[data-f]').forEach(i => i.checked = false); $('#minP').value = $('#maxP').value = ''; apply(); };
+    document.addEventListener('click', e => {
+      const c = e.target.closest('[data-chip]');
+      if (c) { const k = c.dataset.chip; if (k === 'price') { state.min = state.max = ''; $('#minP').value = $('#maxP').value = ''; } else if (FACETS[k]) { state[k] = state[k].filter(v => v !== c.dataset.v); $$(`[data-f="${k}"]`).forEach(i => i.checked = state[k].includes(i.value)); } else state[k] = ''; apply(); }
+      if (e.target.closest('#emptyClear, #clearAll')) clear();
+    });
+    $('#openFilters').addEventListener('click', () => { $('#filters').classList.add('open'); $('.drawer-bg').classList.add('open'); });
+    $('#closeFilters').addEventListener('click', UI.closeDrawers);
+    const mq = matchMedia('(max-width: 900px)'); const fit = () => { $('#grid').style.gridTemplateColumns = mq.matches ? '' : 'repeat(3,1fr)'; $('#closeFilters').parentElement.style.display = mq.matches ? 'flex' : 'none'; };
+    mq.addEventListener('change', fit); fit();
+    apply();
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sri Chandana Jewellers | Gold, Diamond & Bridal Jewellery in Parvathipuram</title>
+  <meta name="description" content="Sri Chandana Jewellers, Parvathipuram — BIS hallmarked 22K gold, diamond and bridal jewellery with transparent pricing and monthly gold savings schemes. Near Sri Vasavi Kanyaka Parameshwari Temple, Palakonda Road. Since 2007.">
+  <meta name="theme-color" content="#861543">
+  <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"JewelryStore","name":"Sri Chandana Jewellers","address":{"@type":"PostalAddress","streetAddress":"Parvathipuram - Palakonda Road, near Sri Vasavi Kanyaka Parameshwari Temple","addressLocality":"Parvathipuram","addressRegion":"Andhra Pradesh","postalCode":"535501","addressCountry":"IN"},"openingHours":"Mo-Su 10:30-20:30","telephone":"+91-9121079916","email":"sankamadhu1975@gmail.com","foundingDate":"2007-11-30","founder":{"@type":"Person","name":"Ananda Rao"},"sameAs":["https://www.instagram.com/sri_chandana_jewellers5/"],"hasMap":"https://maps.app.goo.gl/XvTZ2U2ej6Z1Z5Hh8"}</script>
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <!-- Hero: peeking carousel (slides managed in Admin → Banners) -->
+    <section class="hero loading" aria-roledescription="carousel" aria-label="Featured collections">
+      <div class="hero-track" id="track"></div>
+      <button class="hero-arrow prev" id="prev" aria-label="Previous slide"></button>
+      <button class="hero-arrow next" id="next" aria-label="Next slide"></button>
+      <div class="hero-ctrl"><div class="dots" id="dots" role="group" aria-label="Choose slide"></div><button class="icon-btn" id="heroPause" aria-label="Pause slideshow"></button></div>
+    </section>
+
+    <section class="trust" aria-label="Our promise"><div class="wrap stagger" id="trust"></div></section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">
+      <span>BIS Hallmarked Gold</span><i>✦</i><span>Gold Savings Schemes</span><i>✦</i><span>Diamond Jewellery</span><i>✦</i><span>Transparent Pricing</span><i>✦</i><span>Bridal &amp; Temple Jewellery</span><i>✦</i><span>19 Years of Legacy</span><i>✦</i>
+      <span>BIS Hallmarked Gold</span><i>✦</i><span>Gold Savings Schemes</span><i>✦</i><span>Diamond Jewellery</span><i>✦</i><span>Transparent Pricing</span><i>✦</i><span>Bridal &amp; Temple Jewellery</span><i>✦</i><span>19 Years of Legacy</span><i>✦</i>
+    </div></div>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Sri Chandana Collections</h2><p class="sub">Explore our newly launched collections</p></div>
+        <div class="collections stagger" id="collections"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:20px">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Shop by Categories</h2><p class="sub">Browse through your favourite categories. We've got them all!</p></div>
+        <div class="cats stagger" id="cats"></div>
+      </div>
+    </section>
+
+    <section class="section rate-band" aria-labelledby="rateTitle">
+      <div class="wrap">
+        <div class="reveal">
+          <span class="eyebrow">Updated daily · Parvathipuram</span>
+          <h2 id="rateTitle" style="margin-top:10px">Today's Gold &amp; Silver Rates</h2>
+          <p class="sub" style="margin-bottom:18px">Every design on our website is priced at today's rate — so the price you see is the price of the day.</p>
+          <p style="color:var(--muted)">Every bill shows the full breakup — metal value, making charges, stones and GST. No hidden charges, ever.</p>
+          <div class="btn-row" style="margin-top:24px"><a class="btn btn-primary" href="schemes.html">Join Gold Scheme <svg class="icon icon-sm arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-outline" href="schemes.html#exchange">Old Gold Exchange</a></div>
+        </div>
+        <div class="reveal" style="--d:.15s"><div class="rate-cards" id="rateCards"></div><p class="updated" id="rateUpdated"></p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Trending Now</h2><p class="sub">Jewellery pieces everyone's eyeing right now</p></div>
+        <div class="tabs reveal" role="tablist" aria-label="Product groups" id="tabs"></div>
+        <div class="grid" id="tabGrid" role="tabpanel"></div>
+        <p style="text-align:center;margin-top:44px"><a class="btn btn-outline" href="shop.html">View All Jewellery <svg class="icon icon-sm arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </div>
+    </section>
+
+    <section class="section bg-blush">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Sri Chandana World</h2><p class="sub">A companion for every occasion</p></div>
+        <div class="world stagger" id="world"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Bridal Collections</h2><p class="sub">Heirlooms for every tradition of the South</p></div>
+        <div class="bridal stagger" id="bridal"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:10px">
+      <div class="wrap">
+        <div class="row-head reveal"><div><h2>New Arrivals</h2><p class="sub" style="margin:4px 0 0">Fresh designs, just in</p></div>
+          <div class="scroll-ctrl"><button class="icon-btn" data-scroll="-1" aria-label="Scroll left"></button><button class="icon-btn" data-scroll="1" aria-label="Scroll right"></button></div></div>
+        <div class="scroller stagger" id="newScroller"></div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="assure reveal">
+          <div><span class="eyebrow">Our Promise</span><h2 style="margin-top:10px">Sri Chandana Assurance</h2><p class="sub" style="margin:0">Honest gold for Parvathipuram families since 2007.</p></div>
+          <div class="assure-grid" id="assure"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div class="split-media reveal shine"><img src="https://images.unsplash.com/photo-1600685890506-593fdf55949b?auto=format&fit=crop&w=1000&q=75" alt="Bride wearing a traditional gold temple jewellery set" loading="lazy">
+          <div class="float"><strong>2007</strong><span>serving brides of Parvathipuram since</span></div></div>
+        <div class="reveal" style="--d:.15s">
+          <span class="eyebrow">Bridal Studio</span>
+          <h2 style="margin-top:10px">Your Wedding Jewellery, Personally Curated</h2>
+          <p class="sub">Book a private consultation at our Parvathipuram showroom.</p>
+          <p style="color:var(--muted)">Our bridal stylists help you build a complete trousseau — from the muhurtham haram to vaddanam and the mangalsutra — within your budget.</p>
+          <ul class="ticks">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Private lounge with a dedicated stylist</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom designs and heirloom remakes</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Rate protection — book today, pay the lower rate on delivery</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Video call shopping for families abroad</li>
+          </ul>
+          <div class="btn-row"><button class="btn btn-primary" data-book="Bridal Consultation">Book Consultation</button><a class="btn btn-outline" href="shop.html?collection=Bridal">Browse Bridal</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="xbanner reveal">
+          <img src="https://images.unsplash.com/photo-1654781456542-fdd1683c79c3?auto=format&fit=crop&w=1800&q=70" alt="" loading="lazy">
+          <div class="x-copy">
+            <span class="eyebrow">Exchange Program</span>
+            <h2 style="margin-top:10px">Bring Your Old Gold Home to New Designs</h2>
+            <p style="color:var(--ink-2)">Bring your old gold — we test its purity in front of you and give you the best value at today's rate towards new jewellery.</p>
+            <div class="stat-row"><div><strong>Today's</strong><small>gold rate</small></div><div><strong>Live</strong><small>purity testing</small></div><div><strong>Same day</strong><small>exchange</small></div></div>
+            <div class="btn-row"><a class="btn btn-primary" href="schemes.html#exchange">Calculate Value</a><button class="btn btn-outline" data-book="Old Gold Exchange">Book a Visit</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Curated For You</h2><p class="sub">Shop by budget or by who you're shopping for</p></div>
+        <div class="chips-row stagger">
+          <a class="price-chip" href="shop.html?max=25000"><small>Under</small><strong>₹25,000</strong></a>
+          <a class="price-chip" href="shop.html?min=25000&max=75000"><small>₹25K to</small><strong>₹75,000</strong></a>
+          <a class="price-chip" href="shop.html?min=75000&max=200000"><small>₹75K to</small><strong>₹2 Lakh</strong></a>
+          <a class="price-chip" href="shop.html?min=200000"><small>Above</small><strong>₹2 Lakh</strong></a>
+        </div>
+        <div class="gender stagger" style="margin-top:22px" id="gender"></div>
+      </div>
+    </section>
+
+    <section class="signature" aria-labelledby="sigTitle" style="--bg:url('https://images.unsplash.com/photo-1758995115857-2de1eb6283d0?auto=format&fit=crop&w=1800&q=70')">
+      <div class="sig-frame reveal">
+        <span class="eyebrow">The Sri Chandana Signature</span>
+        <h2 id="sigTitle">Crafted in gold.<br><em class="foil">Cherished for generations.</em></h2>
+        <p>Every piece is chosen with care, hallmarked by BIS and priced with a full breakup — so the gold you buy today is gold your family can trust for generations.</p>
+        <div class="sig-stats"><div><strong>19</strong><small>Years of legacy</small></div><div><strong>916</strong><small>Hallmarked 22K</small></div><div><strong>4.5★</strong><small>Rated on Google</small></div></div>
+        <a class="btn btn-gold" href="shop.html">Discover the Collection <svg class="icon icon-sm arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+
+    <section class="section founder-sec" aria-labelledby="founderTitle">
+      <div class="wrap founder">
+        <div class="founder-photo reveal"><div class="arch"><img src="assets/founder-ananda-rao.jpg" alt="Sri Ananda Rao, founder of Sri Chandana Jewellers" loading="lazy"></div>
+          <div class="founder-seal"><strong>Est.</strong><span>30 Nov 2007</span></div></div>
+        <div class="reveal" style="--d:.15s">
+          <span class="eyebrow">Our Founder</span>
+          <h2 id="founderTitle" style="margin-top:10px">Sri Ananda Rao</h2>
+          <p class="founder-lead">Sri Chandana Jewellers opened its doors on 30 November 2007 on Palakonda Road, Parvathipuram — near the Sri Vasavi Kanyaka Parameshwari Temple.</p>
+          <p style="color:var(--muted)">Started by Sri Ananda Rao with a simple belief — that every family deserves honest gold at a fair price — the store has become a place where Parvathipuram families come for wedding jewellery, festive gold and everyday pieces.</p>
+          <ul class="ticks">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>BIS hallmarked gold with a clear price breakup</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Monthly gold savings schemes from ₹500</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Personal attention for every customer</li>
+          </ul>
+          <div class="btn-row"><a class="btn btn-primary" href="stores.html#about">Our Story</a><a class="btn btn-outline" id="founderMap" target="_blank" rel="noopener">Visit the Store</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-blush">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Loved by Families</h2><p class="sub">What our customers say about us on Google</p></div>
+        <div class="g-rating reveal">
+          <div class="g-score"><strong>4.5</strong><div class="stars" aria-label="4.5 out of 5 stars" id="gStars"></div><span>Based on 16 Google reviews</span></div>
+          <div class="g-copy"><p>Customers often mention our reasonable prices, good collections and friendly staff. Read every review on Google, or share your own experience.</p>
+            <div class="btn-row"><a class="btn btn-primary" id="gRead" target="_blank" rel="noopener">Read Reviews on Google</a><a class="btn btn-outline" id="gWrite" target="_blank" rel="noopener">Write a Review</a></div></div>
+        </div>
+        <div class="quotes stagger" id="quotes" style="margin-top:22px"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><h2>The Sri Chandana Experience</h2><p class="sub">Visit our showroom or book a consultation</p></div>
+        <div class="exp stagger">
+          <a class="exp-card" href="stores.html"><img src="https://images.unsplash.com/photo-1764512680324-048f158cab2b?auto=format&fit=crop&w=1000&q=75" alt="" loading="lazy"><div class="e-copy"><span class="eyebrow" style="color:var(--gold-soft)">Visit Us</span><h3>Our Parvathipuram Showroom</h3><p style="margin:0 0 16px">Over 5,000 designs under one roof, open all 7 days.</p><span class="btn btn-white">Get Directions</span></div></a>
+          <a class="exp-card" href="#" data-book="Video Call"><img src="https://images.unsplash.com/photo-1763578590148-fbac0711f3b2?auto=format&fit=crop&w=1000&q=75" alt="" loading="lazy"><div class="e-copy"><span class="eyebrow" style="color:var(--gold-soft)">From Home</span><h3>Book a Video Consultation</h3><p style="margin:0 0 16px">See designs live on video with our experts — anywhere in the world.</p><span class="btn btn-white">Book Now</span></div></a>
+        </div>
+        <div class="visit reveal" style="margin-top:20px">
+          <div class="visit-info">
+            <span class="eyebrow">Find Us</span>
+            <h2 style="margin-top:10px">Sri Chandana Jewellers, Parvathipuram</h2>
+            <ul class="info-list" id="visitInfo"></ul>
+            <div class="btn-row"><a class="btn btn-primary" id="dirBtn" target="_blank" rel="noopener">Get Directions</a><button class="btn btn-outline" data-book>Book a Visit</button></div>
+          </div>
+          <iframe id="mapFrame" title="Map showing Sri Chandana Jewellers in Parvathipuram" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" aria-label="Instagram gallery" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal" style="margin-bottom:28px"><h2>#SriChandanaBrides</h2><p class="sub">Follow us on Instagram <a href="https://www.instagram.com/sri_chandana_jewellers5/" target="_blank" rel="noopener" style="color:var(--maroon)">@sri_chandana_jewellers5</a></p></div>
+        <div class="insta stagger" id="insta"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/store.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/live-rate.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+  SCJ.ready.then(function () {
+    const { $, $$, esc, icon, card, reveal } = UI; const db = SCJ.db; const IMG = SCJ.IMG;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ARROW = icon('arrow', 'icon-sm');
+
+    // ---------- Hero peeking carousel ----------
+    const banners = db.banners.filter(b => b.active);
+    const track = $('#track'), hero = $('.hero');
+    // Three copies of the slides (clone | real | clone) give an endless loop with neighbours peeking on both sides.
+    const N = banners.length;
+    const slideHTML = (b, i, real) => `<div class="slide" ${real ? `role="group" aria-roledescription="slide" aria-label="${i + 1} of ${N}"` : 'aria-hidden="true"'} data-i="${i}">
+      <img src="${b.image}" alt="" ${real && i === 0 ? 'fetchpriority="high"' : 'decoding="async"'}>
+      <div class="slide-copy"><div class="box"><span class="eyebrow">Sri Chandana Jewellers</span>
+      ${real && i === 0 ? '<h1>' : '<h2>'}${esc(b.title)}${real && i === 0 ? '</h1>' : '</h2>'}<p>${esc(b.subtitle)}</p>
+      <div class="btn-row"><a class="btn btn-gold" href="${esc(b.link)}" tabindex="-1">${esc(b.cta)} ${icon('arrow', 'icon-sm arrow')}</a></div></div></div></div>`;
+    track.innerHTML = [0, 1, 2].map(set => banners.map((b, i) => slideHTML(b, i, set === 1)).join('')).join('');
+    $('#dots').innerHTML = banners.map((b, i) => `<button aria-label="Show slide ${i + 1}: ${esc(b.title)}" aria-current="false"></button>`).join('');
+    $('#prev').innerHTML = icon('chevL'); $('#next').innerHTML = icon('chevR');
+    let pos = N, paused = reduce, timer;
+    const DUR = 6000; hero.style.setProperty('--dur', DUR + 'ms');
+    const slides = () => $$('.slide', track);
+    function layout(animate = true) {
+      const s = slides()[pos]; if (!s) return;
+      hero.scrollLeft = 0; // focus inside an off-screen slide can scroll the clipped hero
+      if (!animate) track.style.transition = 'none';
+      track.style.transform = `translateX(${-(s.offsetLeft - (hero.clientWidth - s.offsetWidth) / 2)}px)`;
+      if (!animate) { void track.offsetWidth; track.style.transition = ''; }
+    }
+    function mark() {
+      const real = ((pos % N) + N) % N;
+      slides().forEach((s, k) => { const on = k === pos; s.classList.toggle('active', on); s.querySelectorAll('a').forEach(a => a.tabIndex = on && k >= N && k < 2 * N ? 0 : -1); });
+      $$('#dots button').forEach((d, k) => { d.setAttribute('aria-current', 'false'); if (k === real) { void d.offsetWidth; d.setAttribute('aria-current', 'true'); } });
+    }
+    // after sliding onto a clone, jump silently to the matching real slide (timer, not transitionend, so it can't get stuck)
+    let wrapT;
+    function normalize() {
+      if (pos >= N && pos < 2 * N) return;
+      const ss = slides(); ss.forEach(s => s.style.transition = 'none');
+      pos = N + (((pos % N) + N) % N); mark(); layout(false);
+      void track.offsetWidth; ss.forEach(s => s.style.transition = '');
+    }
+    function go(n, rel) { if (!ready) return; normalize(); pos = rel ? pos + n : n; mark(); layout(); halt(); left = DUR; resume(); clearTimeout(wrapT); wrapT = setTimeout(normalize, 950); }
+    // The autoplay timer keeps the time left across pauses, so it stays in step with the progress dot (which CSS pauses too).
+    let ready = false, hovering = false, focused = false, left = DUR, started = 0, running = false;
+    const canRun = () => ready && !paused && !hovering && !focused;
+    function halt() { if (running) left = Math.max(0, left - (Date.now() - started)); running = false; clearTimeout(timer); hero.classList.add('paused'); }
+    function resume() { halt(); hero.classList.toggle('paused', !canRun()); if (canRun()) { running = true; started = Date.now(); timer = setTimeout(() => go(1, true), left); } }
+    $$('#dots button').forEach((b, i) => b.addEventListener('click', () => go(N + i)));
+    $('#prev').addEventListener('click', () => go(-1, true)); $('#next').addEventListener('click', () => go(1, true));
+    track.addEventListener('click', e => { const s = e.target.closest('.slide'); if (s && !s.classList.contains('active')) { e.preventDefault(); go(slides().indexOf(s) - pos, true); } });
+    const pb = $('#heroPause');
+    const setPb = () => { pb.innerHTML = icon(paused ? 'play' : 'pause', 'icon-sm'); pb.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow'); };
+    pb.addEventListener('click', () => { paused = !paused; setPb(); resume(); });
+    hero.addEventListener('mouseenter', () => { hovering = true; halt(); });
+    hero.addEventListener('mouseleave', () => { hovering = false; resume(); });
+    hero.addEventListener('focusin', () => { focused = true; halt(); });
+    hero.addEventListener('focusout', e => { if (!hero.contains(e.relatedTarget)) { focused = false; resume(); } });
+    // swipe
+    let sx = null; track.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
+    track.addEventListener('touchend', e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1, true); sx = null; });
+    addEventListener('resize', () => layout(false)); layout(false); requestAnimationFrame(() => layout(false)); setPb();
+    // Entrance: wait for the first banner photo, then reveal the hero and start text, zoom, dot and timer together.
+    function start() {
+      if (ready) return; ready = true; layout(false);
+      hero.classList.remove('loading'); mark(); halt(); left = DUR; resume();
+    }
+    const firstImg = slides()[N].querySelector('img');
+    if (firstImg.complete && firstImg.naturalWidth) requestAnimationFrame(start);
+    else { firstImg.addEventListener('load', start, { once: true }); firstImg.addEventListener('error', start, { once: true }); setTimeout(start, 2500); }
+
+    // ---------- Trust ----------
+    $('#trust').innerHTML = [['shield', 'BIS Hallmarked', '100% HUID certified gold'], ['refresh', 'Old Gold Exchange', 'Best value at today\'s rate'], ['gem', 'Gold Savings Scheme', 'Start from ₹500 a month'], ['receipt', 'Transparent Pricing', 'Full breakup on every bill']]
+      .map(([i, a, b]) => `<div class="trust-item"><span class="ic">${icon(i)}</span><div><strong>${a}</strong><span>${b}</span></div></div>`).join('');
+
+    // ---------- Collections ----------
+    const cols = [['Bridal', 'Kalyani Bridal', 'Heirloom sets for your big day', '1654764746221-7bc58ef4dbad'], ['Temple', 'Temple Heritage', 'Lakshmi kasu & nakshi', '1640183298005-3a4497cc6a37'], ['Diamond', 'Brilliance', 'Certified diamonds', '1762505464446-c0760d740aee'], ['Kundan', 'Polki & Kundan', 'Royal Rajasthani craft', '1738754719555-05aca36707b1'], ['Daily Wear', 'Everyday Gold', 'Light, from 2 grams', '1773929345739-94db8a4ccd0c'], ['Men', 'For Him', 'Chains, kadas & signets', '1721807550979-6e662d370e92']];
+    $('#collections').innerHTML = cols.map(([k, t, s, id]) => `<a class="col-card shine" href="shop.html?collection=${encodeURIComponent(k)}"><img src="${IMG(id, 700)}" alt="" loading="lazy"><span class="frame"></span><div class="col-copy"><small>${s}</small><h3>${t}</h3><span class="go">Explore ${ARROW}</span></div></a>`).join('');
+
+    // ---------- Categories ----------
+    const cats = [['Necklaces', '1758995115518-26f90aa61b97'], ['Earrings', '1762686130435-897de4b26aac'], ['Rings', '1617038260897-41a1f14a8ca0'], ['Bangles', '1758995116383-f51775896add'], ['Chains', '1611107683227-e9060eccd846'], ['Pendants', '1685970731194-e27b477e87ba'], ['Mangalsutra', '1787520542687-e2647225dc8f']];
+    $('#cats').innerHTML = cats.map(([c, id]) => `<a class="cat" href="shop.html?category=${encodeURIComponent(c)}"><div class="cat-img shine"><img src="${IMG(id, 500)}" alt="" loading="lazy" width="500" height="500"></div><span class="cat-name">${c}${ARROW}</span></a>`).join('')
+      + `<a class="cat all" href="shop.html"><div class="cat-img"><div><strong>${db.products.length}+</strong><small>designs</small></div></div><span class="cat-name">View All${ARROW}</span></a>`;
+
+    // ---------- Rates ----------
+    const r = SCJ.rates;
+    $('#rateCards').innerHTML = [['24 Karat', r.k24, '99.9% pure gold'], ['22 Karat', r.k22, '91.6% · jewellery gold'], ['18 Karat', r.k18, '75% · diamond settings'], ['Silver', r.silver, '999 fine silver']]
+      .map(([a, v, s]) => `<div class="rate-card"><span>${a}</span><strong data-rate="${v}">${SCJ.inr(v)}</strong><small>per gram · ${s}</small></div>`).join('');
+    $('#rateUpdated').innerHTML = `<span class="dot" style="width:7px;height:7px;border-radius:50%;background:#2DB56A;display:inline-block"></span> ${r.auto ? 'Live market rate · ' : ''}Updated ${new Date(r.updated).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}`;
+
+    // ---------- Trending tabs ----------
+    const groups = { 'Bestsellers': p => p.tags.includes('bestseller'), 'Bridal': p => p.collection === 'Bridal' || p.tags.includes('bridal'), 'Diamond': p => p.metal === 'Diamond', 'Gifting': p => p.tags.includes('gift'), 'For Him': p => p.gender === 'Men' };
+    const names = Object.keys(groups);
+    $('#tabs').innerHTML = names.map((n, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" data-tab="${n}">${n}</button>`).join('');
+    const showTab = n => { const g = $('#tabGrid'); g.classList.remove('fade-swap'); void g.offsetWidth; g.innerHTML = db.products.filter(groups[n]).slice(0, 8).map(card).join(''); g.classList.add('fade-swap'); $$('#tabs .tab').forEach(t => t.setAttribute('aria-selected', t.dataset.tab === n)); };
+    $('#tabs').addEventListener('click', e => { const t = e.target.closest('[data-tab]'); if (t) showTab(t.dataset.tab); });
+    showTab(names[0]);
+
+    // ---------- World ----------
+    const world = [['Wedding', 'Bridal sets, harams & mangalsutra', 'shop.html?collection=Bridal', '1594140700783-f9e70c7abc25'], ['Gold', '22K classics for every day', 'shop.html?metal=Gold', '1758995115857-2de1eb6283d0'], ['Diamond', 'Certified brilliance in 18K', 'shop.html?metal=Diamond', '1743264385411-57c883bdc0ea'], ['Daily Wear', 'Light designs from 2 grams', 'shop.html?collection=Daily Wear', '1780565336527-34922b59aa57']];
+    $('#world').innerHTML = world.map(([t, s, l, id]) => `<a href="${l}" class="shine"><img src="${IMG(id, 1000)}" alt="" loading="lazy"><div class="w-copy"><div><h3>${t}</h3><p>${s}</p></div><span class="circle">${ARROW}</span></div></a>`).join('');
+
+    // ---------- Bridal regional ----------
+    const bridal = [['Telugu Bridal', '1600685890506-593fdf55949b', 'Bridal'], ['Temple Bridal', '1758995115518-26f90aa61b97', 'Temple'], ['Kundan Bridal', '1751606615009-30f61ff1a510', 'Kundan'], ['Antique Bridal', '1787831398033-d70495c1e8a4', 'Temple'], ['Diamond Bridal', '1743264385411-57c883bdc0ea', 'Diamond']];
+    $('#bridal').innerHTML = bridal.map(([t, id, k]) => `<a href="shop.html?collection=${encodeURIComponent(k)}"><div class="b-img shine"><img src="${IMG(id, 500)}" alt="" loading="lazy"></div><h3>${t}</h3></a>`).join('');
+
+    // ---------- New arrivals ----------
+    $('#newScroller').innerHTML = [...db.products].filter(p => p.tags.includes('new')).concat(db.products.filter(p => !p.tags.includes('new')).slice(-4)).slice(0, 10).map(card).join('');
+    $$('[data-scroll]').forEach(b => { b.innerHTML = icon(b.dataset.scroll < 0 ? 'chevL' : 'chevR', 'icon-sm'); b.addEventListener('click', () => { const s = $('#newScroller'); s.scrollBy({ left: s.clientWidth * .8 * b.dataset.scroll, behavior: 'smooth' }); }); });
+
+    // ---------- Assurance ----------
+    $('#assure').innerHTML = [['award', 'Quality Assured', 'BIS hallmarked 916 gold'], ['shield', '19 Years of Legacy', 'A trusted Parvathipuram family name'], ['gem', '100% Transparency', 'Every gram accounted'], ['refresh', 'After-sales Care', 'Cleaning & polish on request']]
+      .map(([i, a, b]) => `<div>${icon(i)}<strong>${a}</strong><small>${b}</small></div>`).join('');
+
+    // ---------- Gender ----------
+    $('#gender').innerHTML = [['For Her', 'shop.html?gender=Women', '1688382654723-a7366006519b'], ['For Him', 'shop.html?gender=Men', '1762505465234-de8b802614d9'], ['Gifting', 'shop.html?tag=gift', '1631982690223-8aa4be0a2497']]
+      .map(([t, l, id]) => `<a href="${l}" class="shine"><img src="${IMG(id, 700)}" alt="" loading="lazy"><span>${t}${ARROW}</span></a>`).join('');
+
+    // ---------- Reviews ----------
+    $('#gStars').innerHTML = icon('star').repeat(4) + `<span class="half">${icon('star')}</span>`;
+    $('#gRead').href = db.settings.mapUrl; $('#gWrite').href = db.settings.mapUrl; $('#founderMap').href = db.settings.mapUrl;
+    $('#quotes').hidden = !db.reviews.length;
+    $('#quotes').innerHTML = db.reviews.map(q => `<figure class="quote" style="margin:0"><div class="stars" aria-label="${q.rating} out of 5 stars">${icon('star').repeat(q.rating)}</div><blockquote style="margin:0"><p>${esc(q.text)}</p></blockquote><footer><strong>${esc(q.name)}</strong> · ${esc(q.place)}</footer></figure>`).join('');
+
+    // ---------- Visit ----------
+    const s = db.settings;
+    $('#visitInfo').innerHTML = `<li>${icon('pin')}<span>${esc(s.address)}</span></li><li>${icon('phone')}<a href="tel:${s.phone.replace(/\s/g, '')}">${esc(s.phone)}</a></li><li>${icon('clock')}<span>${esc(s.hours)}</span></li><li>${icon('mail')}<a href="mailto:${esc(s.email)}">${esc(s.email)}</a></li>`;
+    $('#mapFrame').src = 'https://www.google.com/maps?q=' + encodeURIComponent(s.mapQuery) + '&output=embed';
+    $('#dirBtn').href = s.mapUrl || 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(s.mapQuery);
+
+    // ---------- Instagram ----------
+    const g = ['1688382654723-a7366006519b', '1787831398033-d70495c1e8a4', '1756483560049-e7b2208f99a0', '1763578590148-fbac0711f3b2', '1654764746221-7bc58ef4dbad', '1751606615009-30f61ff1a510'];
+    $('#insta').innerHTML = g.map(id => `<a href="${s.instagram}" aria-label="View on Instagram"><img src="${IMG(id, 400)}" alt="" loading="lazy"></a>`).join('');
+
+    // ---------- Count-up numbers ----------
+    if (!reduce && 'IntersectionObserver' in window) {
+      const co = new IntersectionObserver(es => es.forEach(en => {
+        if (!en.isIntersecting) return; co.unobserve(en.target);
+        const el = en.target, end = +el.dataset.count, suffix = el.textContent.replace(/[\d,]/g, ''), t0 = performance.now();
+        const step = t => { const k = Math.min(1, (t - t0) / 1600), v = Math.round(end * (1 - Math.pow(1 - k, 3))); el.textContent = v.toLocaleString('en-IN') + suffix; if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      }), { threshold: .6 });
+      $$('[data-count]').forEach(el => co.observe(el));
+    }
+    reveal();
+  });
+  </script>
+</body>
+</html>

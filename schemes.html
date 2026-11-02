@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gold Savings Schemes & Old Gold Exchange | Sri Chandana Jewellers, Parvathipuram</title>
+  <meta name="description" content="Join the monthly gold savings scheme or the gold weight plan at Sri Chandana Jewellers, Parvathipuram. Start from ₹500 a month, see your maturity benefit and get the best value for your old gold.">
+  <meta name="theme-color" content="#861543">
+  <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="schemes">
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero" style="--bg:url('https://images.unsplash.com/photo-1624365169364-0640dd10e180?auto=format&fit=crop&w=1600&q=60')">
+      <div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Gold Schemes</span></nav>
+        <h1>Gold Savings Schemes</h1><p style="margin:0 auto;max-width:620px">Save a little every month and buy your dream jewellery with a maturity bonus — or lock in gold grams at every instalment.</p></div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><span class="eyebrow">Choose a Plan</span><h2>Plans That Fit Every Family</h2></div>
+        <div class="plans reveal" id="plans"></div>
+      </div>
+    </section>
+
+    <section class="section bg-white">
+      <div class="wrap calc">
+        <div class="reveal">
+          <span class="eyebrow">Scheme Calculator</span><h2>See What You'll Get</h2>
+          <div class="seg" role="radiogroup" aria-label="Plan" id="calcPlan"></div>
+          <div class="field" style="margin-top:22px"><label for="amt">Monthly instalment: <strong id="amtOut" class="tnum" style="color:var(--maroon)"></strong></label><input id="amt" type="range" min="500" max="50000" step="500" value="2000"></div>
+          <ul class="ticks" style="margin-top:20px" id="calcTicks"></ul>
+        </div>
+        <div class="calc-out reveal" aria-live="polite">
+          <span class="eyebrow" style="color:var(--gold-soft)" id="outLabel">At maturity</span>
+          <div class="big" id="maturity"></div>
+          <div style="margin-top:18px" id="outRows"></div>
+          <p style="margin:14px 0 0;font-size:12.5px;color:#D9C2B4">Estimate only. Bonus and making-charge benefits are confirmed at the store when you join.</p>
+          <a class="btn btn-gold btn-block" style="margin-top:22px" href="#enrol">Enrol Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><span class="eyebrow">How to Join</span><h2>Three Simple Steps</h2></div>
+        <div class="join-steps stagger">
+          <div class="join-step"><span class="num">1</span><h3>Visit the Showroom</h3><p>Come to our store on Palakonda Road, near Sri Vasavi Kanyaka Parameshwari Temple — or send your details below and we'll call you.</p></div>
+          <div class="join-step"><span class="num">2</span><h3>Bring Your Documents</h3><p>A valid photo ID (Aadhaar or PAN card), one passport-size photograph and your mobile number for updates.</p></div>
+          <div class="join-step"><span class="num">3</span><h3>Get Your Passbook</h3><p>Pay your first instalment and receive a passbook to track every monthly payment until maturity.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-white" id="exchange">
+      <div class="wrap calc">
+        <div class="reveal">
+          <span class="eyebrow">Old Gold Exchange</span><h2>Get the Best Value for Your Old Gold</h2>
+          <p style="color:var(--muted)">Bring your old gold jewellery. We check its purity in front of you and give you the best value at today's rate towards new jewellery.</p>
+          <div class="form-2" style="margin-top:20px">
+            <div class="field"><label for="ogW">Weight (grams)</label><input id="ogW" type="number" inputmode="decimal" min="0" step="0.1" value="10"></div>
+            <div class="field"><label for="ogK">Purity</label><select id="ogK"><option value="k22">22K (916)</option><option value="k24">24K (999)</option><option value="k18">18K (750)</option></select></div>
+          </div>
+        </div>
+        <div class="calc-out reveal" aria-live="polite">
+          <span class="eyebrow" style="color:var(--gold-soft)">Estimated value at today's rate</span>
+          <div class="big" id="ogVal"></div>
+          <p style="margin:12px 0 0;font-size:13px;color:#D9C2B4">Final value is decided after the purity test at the store.</p>
+          <button class="btn btn-gold btn-block" style="margin-top:22px" data-book="Old Gold Exchange">Book Exchange Visit</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cream2" id="enrol">
+      <div class="wrap" style="max-width:760px">
+        <div class="section-head"><span class="eyebrow">Enrol in 2 minutes</span><h2>Join a Gold Scheme</h2><p>Leave your details and our team will call you to complete KYC and your first instalment.</p></div>
+        <form class="panel" id="enrolForm" novalidate><div class="form-2">
+          <div class="field"><label for="en-name">Full name <span class="req">*</span></label><input id="en-name" name="name" autocomplete="name" required><span class="err">Please enter your name.</span></div>
+          <div class="field"><label for="en-phone">Mobile <span class="req">*</span></label><input id="en-phone" name="phone" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" autocomplete="tel-national" required><span class="err">Enter a valid 10-digit mobile number.</span></div>
+          <div class="field"><label for="en-plan">Plan</label><select id="en-plan" name="plan"></select></div>
+          <div class="field"><label for="en-amt">Monthly amount (₹) <span class="req">*</span></label><input id="en-amt" name="amount" type="number" inputmode="numeric" min="500" step="500" value="2000" required><span class="err" id="amtErr">Please enter a valid amount.</span></div>
+          <div class="field full"><label for="en-city">Town / Village</label><input id="en-city" name="city" autocomplete="address-level2" placeholder="Parvathipuram"></div>
+        </div>
+        <label class="check" style="margin-bottom:16px"><input type="checkbox" name="agree" required> <span>I agree to be contacted on WhatsApp / phone about the scheme.</span></label>
+        <button class="btn btn-primary btn-block" type="submit">Submit Enrolment</button></form>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/store.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/live-rate.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+  SCJ.ready.then(function () {
+    const { $, $$, esc, validate, bindBlurValidation, toast } = UI; const r = SCJ.rates;
+    const PLANS = SCJ.db.settings.schemePlans || [];
+    const TICK = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+    $('#plans').classList.toggle('two', PLANS.length === 2);
+    $('#plans').innerHTML = PLANS.map(p => `<article class="plan ${p.popular ? 'pop' : ''}">${p.popular ? '<span class="ribbon">Most Popular</span>' : ''}<span class="eyebrow">${esc(p.tag)}</span><h3>${esc(p.name)}</h3><p style="color:var(--muted)">${esc(p.desc)}</p>
+      <ul class="ticks">${(p.perks || []).map(x => `<li>${TICK}${esc(x)}</li>`).join('')}</ul>
+      <a class="btn ${p.popular ? 'btn-primary' : 'btn-outline'} btn-block" href="#enrol" data-plan="${esc(p.id)}">Choose Plan</a></article>`).join('');
+    $('#en-plan').innerHTML = PLANS.map(p => `<option value="${esc(p.id)}">${esc(p.name)}</option>`).join('');
+
+    // calculator
+    let cur = PLANS.find(p => p.popular) || PLANS[0];
+    $('#calcPlan').innerHTML = PLANS.map(p => `<button type="button" role="radio" data-id="${esc(p.id)}">${esc(p.name)}</button>`).join('');
+    const row = (a, b, cls = '') => `<div class="sum-row ${cls}"><span>${a}</span><span class="tnum">${b}</span></div>`;
+    function calc() {
+      if (!cur) return;
+      const amt = $('#amt'); amt.min = cur.min || 500; if (+amt.value < +amt.min) amt.value = amt.min;
+      const a = +amt.value, m = cur.months || 11, paid = a * m, bonus = a * (cur.bonusMonths || 0);
+      $('#amtOut').textContent = SCJ.inr(a);
+      $$('#calcPlan button').forEach(b => b.setAttribute('aria-checked', b.dataset.id === cur.id));
+      $('#calcTicks').innerHTML = (cur.perks || []).map(x => `<li>${TICK}${esc(x)}</li>`).join('');
+      if (bonus > 0) {
+        $('#outLabel').textContent = `At maturity (after ${m} months)`;
+        $('#maturity').textContent = SCJ.inr(paid + bonus);
+        $('#outRows').innerHTML = row(`You pay (${m} × ${SCJ.inr(a)})`, SCJ.inr(paid)) + row('Maturity bonus (up to)', '+ ' + SCJ.inr(bonus)) + row('Approx. 22K gold at today\'s rate', ((paid + bonus) / r.k22).toFixed(2) + ' g', 'total');
+      } else {
+        const g = paid / r.k22;
+        $('#outLabel').textContent = `Gold you collect (after ${m} months)`;
+        $('#maturity').textContent = g.toFixed(2) + ' g';
+        $('#outRows').innerHTML = row(`You pay (${m} × ${SCJ.inr(a)})`, SCJ.inr(paid)) + row('Grams per instalment at today\'s 22K rate', (a / r.k22).toFixed(3) + ' g') + row('Your grams are locked in — price rises don\'t reduce them', '✓', 'total');
+      }
+    }
+    $('#calcPlan').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = PLANS.find(p => p.id === b.dataset.id); calc(); });
+    $('#amt').addEventListener('input', calc); calc();
+    document.addEventListener('click', e => { const a = e.target.closest('[data-plan]'); if (a) { $('#en-plan').value = a.dataset.plan; syncMin(); } });
+
+    const og = () => { const w = Math.max(0, +$('#ogW').value || 0); $('#ogVal').textContent = SCJ.inr(w * r[$('#ogK').value]); };
+    $('#ogW').addEventListener('input', og); $('#ogK').addEventListener('change', og); og();
+
+    const f = $('#enrolForm'); bindBlurValidation(f);
+    function syncMin() { const p = PLANS.find(x => x.id === f.plan.value); const min = p ? p.min || 500 : 500; f.amount.min = min; $('#amtErr').textContent = `Minimum ${SCJ.inr(min)} per month.`; }
+    f.plan.addEventListener('change', syncMin); syncMin();
+    f.addEventListener('submit', e => {
+      e.preventDefault(); if (!validate(f)) { if (!f.agree.checked) toast('Please tick the consent box'); return; }
+      const d = Object.fromEntries(new FormData(f)); const p = PLANS.find(x => x.id === d.plan);
+      SCJ.db.schemes.unshift({ id: SCJ.uid('SCH'), name: d.name, phone: d.phone, plan: p ? p.name : d.plan, amount: +d.amount, city: d.city, paid: 0, payments: [], status: 'New', created: new Date().toISOString() }); SCJ.save();
+      f.reset(); syncMin(); toast('Enrolment received — we will call you shortly.');
+    });
+  });
+  </script>
+</body>
+</html>
